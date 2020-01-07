@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { Rating } from "react-native-elements";
 import firebase from "firebase";
-export default function App() {
+import { NavigationContext } from "react-navigation";
+export default function App({ navigation }) {
   const ratingCompleted = rating => {
     console.log("Rating is: " + rating);
   };
@@ -13,7 +14,8 @@ export default function App() {
     lengthJob: "",
     review: "",
     recommended: "YES",
-    rating: 3
+    rating: 3,
+    key: Math.random().toString()
   });
 
   const changeHandlerName = e => {
@@ -40,6 +42,8 @@ export default function App() {
       .catch(error => {
         console.log("error ", error);
       });
+
+    navigation.navigate("EXPERIENCE");
   };
   return (
     <View style={styles.container}>

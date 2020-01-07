@@ -1,34 +1,25 @@
-import React, { useState } from "react";
-import { FlatList, StyleSheet, Text, View, ScrollView } from "react-native";
-import { Rating } from "react-native-elements";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
+import firebase from "firebase";
 import { Button } from "react-native";
 import Review from "./review";
 
 export default function App({ navigation }) {
+  const [data, setData] = useState([
+    {
+      name: "Burch University",
+      position: "Professor",
+      lengthJob: "6",
+      review: "Good,really,I felt proud",
+      recommended: "YES",
+      rating: 5
+    }
+  ]);
+
   const pressHandler = () => {
     navigation.navigate("LEAVEYOURREVIEW");
   };
 
-  const [data, setData] = useState([
-    {
-      name: "Burch University",
-      position: "Dekan",
-      lengthJob: 12,
-      review: "Bla bla bla bla bla bla bla",
-      recommended: "Yes",
-      rating: 2,
-      key: "1"
-    },
-    {
-      name: "Burch University",
-      position: "Dekan",
-      lengthJob: 12,
-      review: "Bla bla bla bla bla bla bla",
-      recommended: "Yes",
-      rating: 2,
-      key: "2"
-    }
-  ]);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -41,7 +32,7 @@ export default function App({ navigation }) {
         </View>
         <View style={styles.list}>
           {data.map(data => {
-            return <Review data={data} key={data.key} />;
+            return <Review data={data} />;
           })}
         </View>
       </View>

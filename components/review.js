@@ -7,11 +7,11 @@ export default function Review({ data }) {
   const clickHandle = () => {
     firebase
       .database()
-      .ref("Users/")
+      .ref("reviews")
       .remove();
   };
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key={data.key}>
       <View>
         <Text>Company or school name: </Text>
         <Text style={styles.italic}>{data.name}</Text>
