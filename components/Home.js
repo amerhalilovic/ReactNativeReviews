@@ -5,7 +5,7 @@ export default function Home({ navigation }) {
   const pressHandler = () => {
     navigation.navigate("VIEWREVIEWS");
   };
-  console.log(navigation);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>EXPERIENCE FEEDBACK</Text>

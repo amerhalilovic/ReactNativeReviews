@@ -35,13 +35,7 @@ export default function App({ navigation }) {
     firebase
       .database()
       .ref("reviews")
-      .set(fullreview)
-      .then(data => {
-        console.log("data ", data);
-      })
-      .catch(error => {
-        console.log("error ", error);
-      });
+      .set(fullreview);
 
     navigation.navigate("EXPERIENCE");
   };
@@ -80,7 +74,7 @@ export default function App({ navigation }) {
         />
         <Button
           title="Send review"
-          onPress={submitHandler}
+          onPress={() => submitHandler}
           color="coral"
           clearButtonMode="always"
         />

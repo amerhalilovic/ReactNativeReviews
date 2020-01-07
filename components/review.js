@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, Label } from "react-native";
+import { StyleSheet, Text, View, Button, Alert } from "react-native";
 import { Rating } from "react-native-elements";
 import firebase from "firebase";
 
-export default function Review({ data }) {
+export default function Review({ data, setData }) {
   const clickHandle = () => {
     firebase
       .database()
       .ref("reviews")
       .remove();
   };
+
   return (
     <View style={styles.container} key={data.key}>
       <View>
@@ -35,7 +36,12 @@ export default function Review({ data }) {
         <Button
           title="Delete"
           color="red"
-          onPress={() => clickHandle(data.key)}
+          onPress={() => {
+            clickHandle(data.key);
+            Alert.alert("DELETED!", "You cleared database", [
+              { text: "OK", onPress: () => console.log("Closed") }
+            ]);
+          }}
         />
       </View>
     </View>

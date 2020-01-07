@@ -18,7 +18,7 @@ export default function App() {
     };
 
     firebase.initializeApp(firebaseConfig);
-    console.log(firebase);
+   
   }, []);
 
   return <Navigator />;

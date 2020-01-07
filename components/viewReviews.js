@@ -5,16 +5,17 @@ import { Button } from "react-native";
 import Review from "./review";
 
 export default function App({ navigation }) {
-  const [data, setData] = useState([
-    {
-      name: "Burch University",
-      position: "Professor",
-      lengthJob: "6",
-      review: "Good,really,I felt proud",
-      recommended: "YES",
-      rating: 5
-    }
-  ]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    firebase
+      .database()
+      .ref("reviews")
+      .once("value", res => {
+        if (!Object.entries(res).length) return data;
+        setData([...data, res]);
+      });
+  }, []);
 
   const pressHandler = () => {
     navigation.navigate("LEAVEYOURREVIEW");
@@ -32,7 +33,7 @@ export default function App({ navigation }) {
         </View>
         <View style={styles.list}>
           {data.map(data => {
-            return <Review data={data} />;
+            return <Review data={data} setData={setData} />;
           })}
         </View>
       </View>
